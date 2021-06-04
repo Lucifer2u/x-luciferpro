@@ -19,6 +19,15 @@ public class Menu {
 
     //对应router中的子级菜单
     private List<Menu> children;
+    private List<Role> roles;
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 
     private Integer parentId;
 

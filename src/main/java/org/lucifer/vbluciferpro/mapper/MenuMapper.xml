@@ -34,6 +34,23 @@
       </association>
     </collection>
   </resultMap>
+
+  <resultMap id="MenuWithRole" type="org.lucifer.vbluciferpro.model.Menu" extends="BaseResultMap">
+    <collection property="roles" ofType="org.lucifer.vbluciferpro.model.Role">
+      <id column="rid" property="id"/>
+      <result column="rname" property="name"/>
+      <result column="rnameZh" property="nameZh"/>
+    </collection>
+  </resultMap>
+
+
+  <select id="getAllMenusWithRole" resultMap="MenuWithRole">
+    SELECT m.*, r.`id` as rid, r.`name` as rname, r.`nameZh` as rnameZh
+    FROM menu m, menu_role mr, role r
+    WHERE m.`id` = mr.`mid` AND mr.`rid` = r.`id`
+    ORDER BY m.`id`;
+  </select>
+
   <select id="getMenusByHrId" resultMap="Menus2">
     SELECT DISTINCT  m1.*, m2.`id` as id2, m2.`component` as component2, m2.`enabled` as enabled2,
            m2.`iconCls` as iconCls2, m2.`keepAlive` as keepAlive2, m2.`name` as name2,

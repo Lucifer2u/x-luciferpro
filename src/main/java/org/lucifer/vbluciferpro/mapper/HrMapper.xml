@@ -16,6 +16,10 @@
   <sql id="Base_Column_List" >
     id, name, phone, telephone, address, enabled, username, password, userface, remark
   </sql>
+
+  <select id="getHrRolesById" resultType="org.lucifer.vbluciferpro.model.Role">
+    SELECT r.* FROM role r, hr_role hrr WHERE hrr.`rid` = r.`id` AND hrr.`hrid` = #{id}
+  </select>
   <select id="loadUserByUsername" resultMap="BaseResultMap">
     select * from hr where username=#{username}
   </select>

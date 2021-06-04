@@ -1,8 +1,12 @@
 package org.lucifer.vbluciferpro.mapper;
 
 import org.lucifer.vbluciferpro.model.Hr;
+import org.lucifer.vbluciferpro.model.Role;
+
+import java.util.List;
 
 public interface HrMapper {
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(Hr record);
@@ -16,4 +20,7 @@ public interface HrMapper {
     int updateByPrimaryKey(Hr record);
 
     Hr loadUserByUsername(String username);
+
+    List<Role> getHrRolesById(Integer id);
+
 }
