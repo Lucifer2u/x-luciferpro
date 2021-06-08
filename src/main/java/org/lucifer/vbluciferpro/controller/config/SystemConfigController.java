@@ -1,4 +1,4 @@
-package org.lucifer.vbluciferpro.controller;
+package org.lucifer.vbluciferpro.controller.config;
 
 
 import org.lucifer.vbluciferpro.model.Menu;
