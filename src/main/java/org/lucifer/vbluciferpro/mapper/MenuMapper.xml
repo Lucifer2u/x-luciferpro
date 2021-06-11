@@ -43,6 +43,19 @@
     </collection>
   </resultMap>
 
+  <resultMap id="MenuWithChildren" type="org.lucifer.vbluciferpro.model.Menu" extends="BaseResultMap">
+    <id column="id1" property="id"/>
+    <result column="name1" property="name"/>
+    <collection property="children" ofType="org.lucifer.vbluciferpro.model.Menu">
+      <id column="id2" property="id"/>
+      <result column="name2" property="name"/>
+      <collection property="children" ofType="org.lucifer.vbluciferpro.model.Menu">
+        <id column="id3" property="id"/>
+        <result column="name3" property="name"/>
+      </collection>
+    </collection>
+  </resultMap>
+
 
   <select id="getAllMenusWithRole" resultMap="MenuWithRole">
     SELECT m.*, r.`id` as rid, r.`name` as rname, r.`nameZh` as rnameZh
@@ -59,6 +72,13 @@
     where m1.`id`=m2.`parentId` and hrr.`hrid`=#{hrid} and hrr.`rid`=mr.`rid` and mr.`mid`=m2.`id` and m2.`enabled`=true
     ORDER BY m1.`id`,m2.`id`
   </select>
+
+  <select id="getAllMenus" resultMap="MenuWithChildren">
+    SELECT m1.`id` as id1,m1.`name` as name1,m2.`id` as id2,m2.`name` as name2,m3.`id` as id3,m3.`name` as name3
+    FROM menu m1,menu m2,menu m3
+    WHERE m1.`id`=m2.`parentId` AND m2.`id`=m3.`parentId` AND m3.`enabled`=true
+    ORDER BY m1.`id`,m2.`id`,m3.`id`
+  </select>
   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -66,7 +86,7 @@
     from menu
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from menu
     where id = #{id,jdbcType=INTEGER}
   </delete>

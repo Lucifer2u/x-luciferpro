@@ -1,8 +1,9 @@
 package org.lucifer.vbluciferpro.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Menu {
+public class Menu implements Serializable {
     private Integer id;
 
     private String url;
@@ -21,6 +22,10 @@ public class Menu {
     private List<Menu> children;
     private List<Role> roles;
 
+    private Integer parentId;
+
+    private Boolean enabled;
+
     public List<Role> getRoles() {
         return roles;
     }
@@ -28,10 +33,6 @@ public class Menu {
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
-
-    private Integer parentId;
-
-    private Boolean enabled;
 
     public Meta getMeta() {
         return meta;
