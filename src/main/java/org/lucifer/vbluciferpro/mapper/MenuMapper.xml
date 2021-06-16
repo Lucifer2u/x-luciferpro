@@ -86,7 +86,10 @@
     from menu
     where id = #{id,jdbcType=INTEGER}
   </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <select id="getMidsByRid" resultType="java.lang.Integer">
+    select mid from menu_role where rid=#{rid};
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from menu
     where id = #{id,jdbcType=INTEGER}
   </delete>

@@ -19,7 +19,11 @@
     delete from menu_role
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="org.lucifer.vbluciferpro.model.MenuRole" >
+  <delete id="deleteByRid">
+    delete from menu_role where rid=#{rid}
+  </delete>
+
+    <insert id="insert" parameterType="org.lucifer.vbluciferpro.model.MenuRole" >
     insert into menu_role (id, mid, rid)
     values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{rid,jdbcType=INTEGER})
   </insert>
@@ -47,6 +51,12 @@
         #{rid,jdbcType=INTEGER},
       </if>
     </trim>
+  </insert>
+  <insert id="insertRecord">
+    insert into menu_role (mid,rid) values
+    <foreach collection="mids" separator="," item="mid">
+      (#{mid},#{rid})
+    </foreach>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="org.lucifer.vbluciferpro.model.MenuRole" >
     update menu_role
