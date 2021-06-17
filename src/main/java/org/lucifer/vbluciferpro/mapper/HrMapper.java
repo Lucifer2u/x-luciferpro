@@ -1,5 +1,6 @@
 package org.lucifer.vbluciferpro.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import org.lucifer.vbluciferpro.model.Hr;
 import org.lucifer.vbluciferpro.model.Role;
 
@@ -22,5 +23,8 @@ public interface HrMapper {
     Hr loadUserByUsername(String username);
 
     List<Role> getHrRolesById(Integer id);
+
+    List<Hr> getAllHrs(@Param("hrid") Integer hrid, @Param("keywords") String keywords);
+
 
 }

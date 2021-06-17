@@ -13,9 +13,30 @@
     <result column="userface" property="userface" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
+
+  <resultMap id="HrWithRoles" type="org.lucifer.vbluciferpro.model.Hr" extends="BaseResultMap">
+    <collection property="roles" ofType="org.lucifer.vbluciferpro.model.Role">
+      <id column="rid" property="id"/>
+      <result column="rname" property="name"/>
+      <result column="rnameZh" property="nameZh"/>
+    </collection>
+  </resultMap>
+
   <sql id="Base_Column_List" >
     id, name, phone, telephone, address, enabled, username, password, userface, remark
   </sql>
+
+  <select id="getAllHrs" resultMap="HrWithRoles">
+    SELECT hr.id, hr.name, hr.phone, hr.telephone, hr.address, hr.enabled,
+           hr.username, hr.password, hr.userface, hr.remark, r.id as rid, r.name as rname, r.nameZh as rnameZh
+    FROM hr LEFT JOIN hr_role hrr ON hr.id = hrr.hrid
+            LEFT JOIN role r ON hrr.rid = r.id
+    WHERE hr.id != #{hrid}
+    <if test="keywords!=null">
+      and hr.name like concat('%',#{keywords},'%')
+    </if>
+    ORDER BY hr.id
+  </select>
 
   <select id="getHrRolesById" resultType="org.lucifer.vbluciferpro.model.Role">
     SELECT r.* FROM role r, hr_role hrr WHERE hrr.`rid` = r.`id` AND hrr.`hrid` = #{id}
