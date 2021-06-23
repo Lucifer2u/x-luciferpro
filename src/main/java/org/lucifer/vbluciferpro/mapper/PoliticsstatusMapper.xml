@@ -1,34 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.lucifer.vbluciferpro.mapper.NationMapper" >
-  <resultMap id="BaseResultMap" type="org.lucifer.vbluciferpro.model.Nation" >
+<mapper namespace="org.lucifer.vbluciferpro.mapper.PoliticsstatusMapper" >
+  <resultMap id="BaseResultMap" type="org.lucifer.vbluciferpro.model.Politicsstatus" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, name
   </sql>
-
-  <select id="getAllNations" resultMap="BaseResultMap">
-    select * from nation;
+  <select id="getAllPoliticsstatus" resultMap="BaseResultMap">
+    select * from politicsstatus
   </select>
-
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from nation
+    from politicsstatus
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from nation
+    delete from politicsstatus
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="org.lucifer.vbluciferpro.model.Nation" >
-    insert into nation (id, name)
+  <insert id="insert" parameterType="org.lucifer.vbluciferpro.model.Politicsstatus" >
+    insert into politicsstatus (id, name)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="org.lucifer.vbluciferpro.model.Nation" >
-    insert into nation
+  <insert id="insertSelective" parameterType="org.lucifer.vbluciferpro.model.Politicsstatus" >
+    insert into politicsstatus
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -46,8 +44,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="org.lucifer.vbluciferpro.model.Nation" >
-    update nation
+  <update id="updateByPrimaryKeySelective" parameterType="org.lucifer.vbluciferpro.model.Politicsstatus" >
+    update politicsstatus
     <set >
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
@@ -55,8 +53,8 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.lucifer.vbluciferpro.model.Nation" >
-    update nation
+  <update id="updateByPrimaryKey" parameterType="org.lucifer.vbluciferpro.model.Politicsstatus" >
+    update politicsstatus
     set name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

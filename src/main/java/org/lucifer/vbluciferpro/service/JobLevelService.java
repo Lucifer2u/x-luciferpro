@@ -15,7 +15,7 @@ public class JobLevelService {
     @Autowired
     JobLevelMapper jobLevelMapper;
 
-    public List<Position> getAllJobLevels() {
+    public List<JobLevel> getAllJobLevels() {
      return jobLevelMapper.getAllJobLevels();
     }
 

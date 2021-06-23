@@ -2,6 +2,8 @@ package org.lucifer.vbluciferpro.mapper;
 
 import org.lucifer.vbluciferpro.model.Nation;
 
+import java.util.List;
+
 public interface NationMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface NationMapper {
     int updateByPrimaryKeySelective(Nation record);
 
     int updateByPrimaryKey(Nation record);
+
+    List<Nation> getAllNations();
 }
