@@ -8,6 +8,7 @@
         <version>2.4.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>org.lucifer</groupId>
     <artifactId>vb-luciferpro</artifactId>
     <version>0.0.1-SNAPSHOT</version>
