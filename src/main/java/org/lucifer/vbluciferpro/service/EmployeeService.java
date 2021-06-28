@@ -55,4 +55,8 @@ public class EmployeeService {
     public Integer maxWorkID() {
         return employeeMapper.maxWorkID();
     }
+
+    public Integer addEmps(List<Employee> list) {
+        return employeeMapper.addEmps(list);
+    }
 }

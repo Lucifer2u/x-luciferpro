@@ -23,4 +23,7 @@ public interface EmployeeMapper {
     Long getTotal(String keyword);
 
     Integer maxWorkID();
+
+    Integer addEmps(@Param("list") List<Employee> list);
+
 }
