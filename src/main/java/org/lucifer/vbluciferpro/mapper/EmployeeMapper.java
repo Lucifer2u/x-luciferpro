@@ -3,6 +3,7 @@ package org.lucifer.vbluciferpro.mapper;
 import org.apache.ibatis.annotations.Param;
 import org.lucifer.vbluciferpro.model.Employee;
 
+import java.util.Date;
 import java.util.List;
 
 public interface EmployeeMapper {
@@ -18,9 +19,9 @@ public interface EmployeeMapper {
 
     int updateByPrimaryKey(Employee record);
 
-    List<Employee> getEmployeeByPage(@Param("page") Integer page, @Param("size") Integer size, String keyword);
+    List<Employee> getEmployeeByPage(@Param("page") Integer page, @Param("size") Integer size, @Param("emp") Employee employee,@Param("beginDateScope") Date[] beginDateScope);
 
-    Long getTotal(String keyword);
+    Long getTotal(@Param("emp") Employee employee,@Param("beginDateScope") Date[] beginDateScope);
 
     Integer maxWorkID();
 
